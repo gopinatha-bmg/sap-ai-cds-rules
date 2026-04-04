@@ -2,19 +2,21 @@
 @EndUserText.label: 'Duplicate Invoice Check'
 
 define view Z_Duplicate_Invoice_Check
-as select from BKPF
-inner join BSEG
-on BKPF.BELNR = BSEG.BELNR
-and BKPF.BUKRS = BSEG.BUKRS
-and BKPF.GJAHR = BSEG.GJAHR
+as select from bkpf
+inner join bseg
+on bkpf.belnr = bseg.belnr
+and bkpf.bukrs = bseg.bukrs
+and bkpf.gjahr = bseg.gjahr
 {
-BKPF.BUKRS,
-BSEG.LIFNR,
-BKPF.XBLNR,
-BSEG.DMBTR,
-BKPF.WAERS,
-BKPF.BUDAT
+  bkpf.bukrs,
+  bseg.lifnr,
+  bkpf.xblnr,
+  bseg.dmbtr,
+  bkpf.waers,
+  bkpf.budat
 }
 where
-BKPF.BUDAT >= add_days(current_date, -90)
-and BKPF.STBLG is initial
+  bkpf.budat >= dats_add_days( cast( $session.system_date as abap.dats ), -90 , 'NULL')
+  and bkpf.stblg is initial
+  and bseg.lifnr is not initial
+  and bkpf.xblnr is not initial

@@ -1,5 +1,6 @@
 @AbapCatalog.sqlViewName: 'Z_DUP_INV_1'
 @EndUserText.label: 'Duplicate Invoice Check 1'
+@OData.publish: true
 
 define view Z_Duplicate_Invoice_Check_1
 as select from bkpf
@@ -8,6 +9,7 @@ on bkpf.belnr = bseg.belnr
 and bkpf.bukrs = bseg.bukrs
 and bkpf.gjahr = bseg.gjahr
 {
+  key bkpf.belnr,
   bkpf.bukrs,
   bseg.lifnr,
   bkpf.xblnr,

@@ -1,5 +1,6 @@
 @AbapCatalog.sqlViewName: 'Z_DPLCT_INV'
 @EndUserText.label: 'Duplicate Invoice Check'
+@OData.publish: true
 
 define view Z_Dplct_Invoice_Chck
 as select from bkpf
